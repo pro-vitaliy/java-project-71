@@ -1,5 +1,14 @@
+setup:
+	./gradlew wrapper --gradle-version 8.5
+
+clean:
+	./gradlew clean
+
 run-dist:
 	./build/install/app/bin/app $(ARGS)
+
+build:
+	./gradlew clean build
 
 test:
 	./gradlew test
@@ -9,6 +18,7 @@ report:
 
 lint:
 	./gradlew checkstyleMain
+
 check-deps:
 
 	./gradlew dependencyUpdates -Drevision=release
