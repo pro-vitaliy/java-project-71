@@ -18,15 +18,15 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.5
-          working-directory: java-project-71/app
+          working-directory: ./app
 
       - name: run checkstyleMain
         run: ./gradlew checkstyleMain
-        working-directory: java-project-71/app
+        working-directory: ./app
 
       - name: run tests
         run: ./app/gradlew test
-        working-directory: java-project-71/app
+        working-directory: ./app
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
