@@ -1,4 +1,4 @@
-name: Java CI
+name: my-check
 
 on:
   - push
@@ -17,8 +17,8 @@ jobs:
       - uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 8.5
-      - run: ./gradlew checkstyleMain
-      - run: ./gradlew/test
+      - run: ./app/gradlew checkstyleMain
+      - run: ./app/gradlew test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         env:
