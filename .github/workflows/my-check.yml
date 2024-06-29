@@ -21,16 +21,13 @@ jobs:
           working-directory: ./app
 
       - name: build
-        working-directory: ./app
-        run: make build
+        run: ./app/gradlew build
 
       - name: run checkstyleMain
-        working-directory: ./app
-        run: ./gradlew checkstyleMain
+        run: ./app/gradlew checkstyleMain
 
       - name: run tests
-        working-directory: ./app
-        run: ./gradlew test
+        run: ./app/gradlew test
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
@@ -39,4 +36,4 @@ jobs:
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
           coverageCommand: ./app/gradlew jacocoTestReport
-          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageLocations: ./app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
