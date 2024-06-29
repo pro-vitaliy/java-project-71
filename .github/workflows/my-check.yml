@@ -29,7 +29,7 @@ jobs:
         working-directory: ./app
 
       - name: run tests
-        run: ./app/gradlew test
+        run: ./gradlew test
         working-directory: ./app
 
       - name: Publish code coverage
