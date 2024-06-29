@@ -51,7 +51,7 @@ public class Differ {
             throw new Exception("File " + filePath + " not found");
         }
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(path.toFile(), new TypeReference<>(){});
+        return mapper.readValue(path.toFile(), new TypeReference<>() { });
     }
 
 }

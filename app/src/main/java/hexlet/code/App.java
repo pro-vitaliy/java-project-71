@@ -29,7 +29,7 @@ public class App implements Callable<String> {
     }
 
     public static void main(String[] args) {
-            int exitCode = new CommandLine(new App()).execute(args);
-            System.exit(exitCode);
+        int exitCode = new CommandLine(new App()).execute(args);
+        System.exit(exitCode);
     }
 }
