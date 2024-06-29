@@ -40,7 +40,9 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: src/main/java
+          workingDirectory: ./app
         with:
           coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
           workingDirectory: ./app
+
