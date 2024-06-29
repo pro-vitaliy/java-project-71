@@ -21,15 +21,15 @@ jobs:
           build-root-directory: ./app
 
       - name: build
-        run: ./gradlew build
+        run: make build
         working-directory: ./app
 
       - name: run checkstyleMain
-        run: ./gradlew checkstyleMain
+        run: make lint
         working-directory: ./app
 
       - name: run tests
-        run: ./gradlew test
+        run: make test
         working-directory: ./app
 
       - name: Publish code coverage
@@ -38,7 +38,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
           JACOCO_SOURCE_PATH: src/main/java
         with:
-          coverageCommand: ./gradlew jacocoTestReport
+          coverageCommand: make report
           coverageLocations: build/reports/jacoco/test/jacocoTestReport.xml:jacoco
           workingDirectory: ${{github.workspace}}/app
 
