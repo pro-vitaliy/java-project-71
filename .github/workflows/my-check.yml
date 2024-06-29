@@ -20,6 +20,10 @@ jobs:
           gradle-version: 8.5
           working-directory: ./app
 
+      - name: build
+        run: make build
+        working-directory: ./app
+
       - name: run checkstyleMain
         run: ./gradlew checkstyleMain
         working-directory: ./app
