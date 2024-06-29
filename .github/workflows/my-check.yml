@@ -22,15 +22,15 @@ jobs:
 
       - name: build
         run: ./gradlew build
-        build-root-directory: ./app
+        working-directory: ./app
 
       - name: run checkstyleMain
         run: ./gradlew checkstyleMain
-        build-root-directory: ./app
+        working-directory: ./app
 
       - name: run tests
         run: ./gradlew test
-        build-root-directory: ./app
+        working-directory: ./app
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
