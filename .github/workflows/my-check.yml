@@ -21,13 +21,16 @@ jobs:
           working-directory: ./app
 
       - name: build
-        run: ./app/gradlew build
+        run: ./gradlew build
+        working-directory: ./app
 
       - name: run checkstyleMain
-        run: ./app/gradlew checkstyleMain
+        run: ./gradlew checkstyleMain
+        working-directory: ./app
 
       - name: run tests
-        run: ./app/gradlew test
+        run: ./gradlew test
+        working-directory: ./app
 
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
