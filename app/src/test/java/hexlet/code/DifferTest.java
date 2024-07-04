@@ -14,15 +14,17 @@ public class DifferTest {
         String testFilePath1 = resourceDir.resolve("testfile1.json").toAbsolutePath().toString();
         String testFilePath2 = resourceDir.resolve("testfile2.json").toAbsolutePath().toString();
 
-        var actual = Differ.generate(testFilePath1, testFilePath2);
+        var actual = Differ.generate(testFilePath1, testFilePath2, "stylish");
         String expected = """
                 {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
+                  + arr: []
+                  + chars1: [a, b, c]
+                  + chars2: false
+                  - default:\s
+                  + default: null
+                    nums1: [1, 2, 3, 4]
+                    nums2: [22, 33, 44, 55]
+                  - obj1: {nestedKey=value, isNested=true}
                 }""";
         assertEquals(expected, actual);
     }
@@ -33,15 +35,17 @@ public class DifferTest {
         String testFilePath5 = resourceDir.resolve("testfile5.yml").toString();
         String testFilePath6 = resourceDir.resolve("testfile6.yml").toString();
 
-        var actual = Differ.generate(testFilePath5, testFilePath6);
+        var actual = Differ.generate(testFilePath5, testFilePath6, "stylish");
         String expected = """
                 {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
+                  + arr: []
+                  + chars1: [a, b, c]
+                  + chars2: false
+                  - default:\s
+                  + default: null
+                    nums1: [1, 2, 3, 4]
+                    nums2: [22, 33, 44, 55]
+                  - obj1: {nestedKey=value, isNested=true}
                 }""";
         assertEquals(expected, actual);
     }

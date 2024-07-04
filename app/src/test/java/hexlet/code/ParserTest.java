@@ -18,10 +18,10 @@ public class ParserTest {
 
         Map<String, String> actual = Parser.getData(testFilePath.toString());
         Map<String, String> expected = Map.of(
-                "host", "hexlet.io",
-                "timeout", "50",
-                "proxy", "123.234.53.22",
-                "follow", "false"
+                "nums1", "[1, 2, 3, 4]",
+                "obj1", "{nestedKey=value, isNested=true}",
+                "nums2", "[22, 33, 44, 55]",
+                "default", ""
         );
         assertEquals(expected, actual);
     }
@@ -33,9 +33,12 @@ public class ParserTest {
 
         Map<String, String> actual = Parser.getData(testFilePath.toString());
         Map<String, String> expected = Map.of(
-                "timeout", "20",
-                "verbose", "true",
-                "host", "hexlet.io"
+                "nums2", "[22, 33, 44, 55]",
+                "chars1", "[a, b, c]",
+                "nums1", "[1, 2, 3, 4]",
+                "chars2", "false",
+                "default", "null",
+                "arr", "[]"
         );
         assertEquals(expected, actual);
     }
