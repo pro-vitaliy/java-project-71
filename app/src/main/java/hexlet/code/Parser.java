@@ -18,17 +18,21 @@ public class Parser {
             throw new Exception("File " + filePath + " not found");
         }
         String fileExtension = FilenameUtils.getExtension(filePath);
-        var result = new HashMap<String, String>();
+        var fileContentMap = new HashMap<String, Object>();
 
         ObjectMapper mapper;
         if (fileExtension.equals("json")) {
             mapper = new ObjectMapper();
-            result = mapper.readValue(path.toFile(), new TypeReference<>() { });
+            fileContentMap = mapper.readValue(path.toFile(), new TypeReference<>() { });
         }
         if (fileExtension.equals("yml")) {
             mapper = new YAMLMapper();
-            result = mapper.readValue(path.toFile(), new TypeReference<>() { });
+            fileContentMap = mapper.readValue(path.toFile(), new TypeReference<>() { });
         }
-        return result;
+        var dataMap = new HashMap<String, String>();
+        for (Map.Entry<String, Object> entry : fileContentMap.entrySet()) {
+            dataMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+        }
+        return dataMap;
     }
 }
