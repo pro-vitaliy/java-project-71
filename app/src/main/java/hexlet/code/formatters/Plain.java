@@ -34,7 +34,7 @@ public class Plain implements Formatter {
     }
 
     private static boolean isNested(String value) {
-        return (value.startsWith("[") && value.endsWith("]")) ||
-                (value.startsWith("{") && value.endsWith("}"));
+        return (value.startsWith("[") && value.endsWith("]"))
+                || (value.startsWith("{") && value.endsWith("}"));
     }
 }
