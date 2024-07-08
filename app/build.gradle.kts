@@ -5,6 +5,7 @@ plugins {
     id ("application")
     id ("checkstyle")
     id ("jacoco")
+    id("io.freefair.lombok") version "8.6"
     id ("com.github.ben-manes.versions") version "0.51.0"
     id ("com.github.johnrengelman.shadow") version "8.1.1"
 }
@@ -26,9 +27,9 @@ dependencies {
     implementation("commons-io:commons-io:2.16.1")
     implementation("info.picocli:picocli:4.7.6")
     annotationProcessor("info.picocli:picocli-codegen:4.7.6")
-    testImplementation(platform("org.junit:junit-bom:5.10.2"))
+    testImplementation(platform("org.junit:junit-bom:5.10.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.assertj:assertj-core:3.23.1")
+    testImplementation("org.assertj:assertj-core:3.26.0")
 }
 
 tasks.test {
