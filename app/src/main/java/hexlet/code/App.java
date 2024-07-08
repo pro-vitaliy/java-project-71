@@ -20,11 +20,11 @@ public class App implements Callable<String> {
 
     @Option(names = {"-f", "--format"}, paramLabel = "format",
             description = "output format [default: ${DEFAULT-VALUE}]")
-    private String format = "stylish";
+    private String formatName = "stylish";
 
     @Override
     public String call() throws Exception {
-        String dif = Differ.generate(filepath1, filepath2, format);
+        String dif = Differ.generate(filepath1, filepath2, formatName);
         System.out.println(dif);
         return dif;
     }
