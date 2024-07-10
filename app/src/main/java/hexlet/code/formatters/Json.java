@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Json implements Formatter {
+    @Override
     public String format(List<Map<String, Object>> diffs) {
         return diffs.stream()
                 .map(Json::toJsonString)
