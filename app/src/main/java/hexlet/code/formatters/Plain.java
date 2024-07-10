@@ -1,40 +1,50 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
 import hexlet.code.Formatter;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Plain implements Formatter {
     @Override
-    public String format(List<Differ> diffs) {
+    public String format(List<Map<String, Object>> diffs) {
         return diffs.stream()
-                .filter(diff -> !diff.getDiffInfo().equals("not changed"))
+                .filter(diff -> !diff.get("info").equals("UNCHANGED"))
                 .map(Plain::generate)
-                .collect(Collectors.joining("\n    ", "{\n    ", "\n}"));
+                .collect(Collectors.joining("\n", "\n", "\n"));
     }
 
-    private static String generate(Differ diff) {
-        var key = diff.getKey();
-        var info = diff.getDiffInfo();
+    private static String generate(Map<String, Object> diff) {
+        var key = diff.get("key").toString();
+        var info = diff.get("info").toString();
         return switch (info) {
-            case "modified" -> {
-                var value1 = isNested(diff.getValue1()) ? "[complex value]" : diff.getValue1();
-                var value2 = isNested(diff.getValue2()) ? "[complex value]" : diff.getValue2();
-                yield "Property '%s' was updated. From %s to %s".formatted(key, value1, value2);
+            case "CHANGED" -> {
+                var oldValue = convertValueToString(diff.get("oldValue"));
+                var newValue = convertValueToString(diff.get("newValue"));
+                yield "Property '%s' was updated. From %s to %s".formatted(key, oldValue, newValue);
             }
-            case "added" -> {
-                var added = isNested(diff.getValue2()) ? "[complex value]" : diff.getValue2();
-                yield "Property '%s' was added with value: %s".formatted(key, added);
+            case "ADDED" -> {
+                var value = convertValueToString(diff.get("value"));
+                yield "Property '%s' was added with value: %s".formatted(key, value);
             }
-            case "removed" -> "Property '%s' was removed".formatted(key);
+            case "DELETED" -> "Property '%s' was removed".formatted(key);
             default -> throw new IllegalStateException("Unexpected value: " + info);
         };
     }
 
-    private static boolean isNested(String value) {
-        return (value.startsWith("[") && value.endsWith("]"))
-                || (value.startsWith("{") && value.endsWith("}"));
+    private static String convertValueToString(Object value) {
+        if (value == null) {
+            return "null";
+        }
+        String stringValue = value.toString();
+        if (value instanceof String) {
+            return "'%s'".formatted(stringValue);
+        } else if (value.getClass().isArray() || value instanceof Collection || value instanceof Map) {
+            return "[complex value]";
+        } else {
+            return stringValue;
+        }
     }
 }
