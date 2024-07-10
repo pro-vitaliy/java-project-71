@@ -3,6 +3,8 @@ package hexlet.code;
 import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashSet;
@@ -11,7 +13,7 @@ import java.util.Collections;
 
 public class Differ {
 
-    public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
+    public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         Map<String, Object> fileData1 = Parser.getData(filePath1);
         Map<String, Object> fileData2 = Parser.getData(filePath2);
 
