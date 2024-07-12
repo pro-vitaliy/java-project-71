@@ -1,63 +1,42 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Differ;
 import hexlet.code.Formatter;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlainTest {
+    private static final Formatter formatter = new Plain();
 
     @Test
-    public void testFormatRemoved() {
-        Differ diff = new Differ("k1", "v1", null, "removed");
-        List<Differ> diffs = List.of(diff);
-        Formatter formatter = new Plain();
-
-        String expected = "{\n    Property 'k1' was removed\n}";
+    public void testFormatDeleted() {
+        var diffs = TestUtils.getDataDeleted();
+        String expected = "\nProperty 'k' was removed\n";
         String actual = formatter.format(diffs);
-
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testFormatModified() {
-        Differ diff = new Differ("k1", "v1", "v2", "modified");
-        List<Differ> diffs = List.of(diff);
-        Formatter formatter = new Plain();
-
-        String expected = "{\n    Property 'k1' was updated. From v1 to v2\n}";
+    public void testFormatChanged() {
+        var diffs = TestUtils.getDataChanged();
+        String expected = "\nProperty 'k' was updated. From 2.5 to 0.1\n";
         String actual = formatter.format(diffs);
-
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testFormatNotChanged() {
-        Differ diff = new Differ("k1", "v1", "v1", "not changed");
-        List<Differ> diffs = List.of(diff);
-        Formatter formatter = new Plain();
-
-        String expected = """
-                {
-                   \s
-                }""";
+    public void testFormatUnchanged() {
+        var diffs = TestUtils.getDataUnchanged();
+        var expected = "\n\n";
         String actual = formatter.format(diffs);
-
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testFormatModifiedComplexValue() {
-        Differ diff = new Differ("k1", "[complex]", "{k: v}", "modified");
-        List<Differ> diffs = List.of(diff);
-        Formatter formatter = new Plain();
-
-        String expected = "{\n    Property 'k1' was updated. From [complex value] to [complex value]\n}";
+    public void testFormatAddedWithComplexValue() {
+        var diffs = TestUtils.getDataAdded();
+        String expected = "\nProperty 'k' was added with value: [complex value]\n";
         String actual = formatter.format(diffs);
-
         assertEquals(expected, actual);
     }
 }
