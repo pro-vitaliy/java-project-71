@@ -30,7 +30,7 @@ public class Plain implements Formatter {
                 yield "Property '%s' was added with value: %s".formatted(key, value);
             }
             case "DELETED" -> "Property '%s' was removed".formatted(key);
-            default -> throw new IllegalStateException("Unexpected value: " + info);
+            default -> throw new IllegalArgumentException("Unexpected value: " + info);
         };
     }
 
