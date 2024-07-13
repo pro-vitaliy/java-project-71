@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := install-run
+
 setup:
 	./gradlew wrapper --gradle-version 8.5
 
@@ -25,4 +27,5 @@ lint:
 check-deps:
 	./gradlew dependencyUpdates -Drevision=release
 
+install-run: install-dist run-dist
 .PHONY: build test
