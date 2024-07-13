@@ -4,6 +4,9 @@ setup:
 clean:
 	./gradlew clean
 
+install:
+	./gradlew installDist
+
 run-dist:
 	./build/install/app/bin/app $(args)
 
@@ -20,7 +23,6 @@ lint:
 	./gradlew checkstyleMain
 
 check-deps:
-
 	./gradlew dependencyUpdates -Drevision=release
 
-.PHONY: build
+.PHONY: build test
