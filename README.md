@@ -7,3 +7,44 @@
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
 
 [![asciicast](https://asciinema.org/a/9E9m9j5uXOzbBulU1knhIjGc0.svg)](https://asciinema.org/a/9E9m9j5uXOzbBulU1knhIjGc0)
+
+## Start
+
+```bash
+make
+```
+
+## Setup
+
+```bash
+make build
+```
+## Install
+
+```bash
+make install
+```
+
+## Run
+
+```bash
+make run-dist
+```
+
+## Run tests
+
+```bash
+make test
+```
+
+## Run checkstyle
+
+```bash
+make lint
+```
+
+## Check update dependencies and plugins
+
+```bash
+make check-deps
+```
