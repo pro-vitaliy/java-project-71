@@ -6,6 +6,9 @@ setup:
 clean:
 	./gradlew clean
 
+install:
+	./gradlew clean install
+
 install-dist:
 	./gradlew installDist
 
