@@ -49,8 +49,7 @@ public class DifferTest {
     public void testGeneratePlain() throws Exception {
         var actual = Differ.generate(testFile5Path, testFile6Path, "plain");
         String expected = """
-                
-                Property 'arr' was added with value: [complex value]
+                \nProperty 'arr' was added with value: [complex value]
                 Property 'chars1' was added with value: [complex value]
                 Property 'chars2' was added with value: false
                 Property 'default' was updated. From '' to null
@@ -62,10 +61,10 @@ public class DifferTest {
     @Test
     public void testGenerateJson() throws Exception {
         var actual = Differ.generate(testFile3Path, testFile4Path, "json");
-        var expected = "{\"value\":[\"value1\",\"value2\"],\"key\":\"default\",\"info\":\"DELETED\"}, " +
-                "{\"newValue\":45,\"oldValue\":null,\"key\":\"id\",\"info\":\"CHANGED\"}, " +
-                "{\"value\":[1,2],\"key\":\"numbers\",\"info\":\"UNCHANGED\"}, " +
-                "{\"value\":{\"k1\":\"v1\",\"k2\":true},\"key\":\"obj\",\"info\":\"ADDED\"}";
+        var expected = "{\"value\":[\"value1\",\"value2\"],\"key\":\"default\",\"info\":\"DELETED\"}, "
+                + "{\"newValue\":45,\"oldValue\":null,\"key\":\"id\",\"info\":\"CHANGED\"}, "
+                + "{\"value\":[1,2],\"key\":\"numbers\",\"info\":\"UNCHANGED\"}, "
+                + "{\"value\":{\"k1\":\"v1\",\"k2\":true},\"key\":\"obj\",\"info\":\"ADDED\"}";
         assertEquals(expected, actual);
     }
 }
