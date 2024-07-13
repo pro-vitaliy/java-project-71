@@ -6,4 +6,4 @@
 
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
 
-[![asciicast](https://asciinema.org/a/BKW32Q1gOvBR1pPUn0bFxlTZi.svg)](https://asciinema.org/a/BKW32Q1gOvBR1pPUn0bFxlTZi)
+[![asciicast](https://asciinema.org/a/9E9m9j5uXOzbBulU1knhIjGc0.svg)](https://asciinema.org/a/9E9m9j5uXOzbBulU1knhIjGc0)
