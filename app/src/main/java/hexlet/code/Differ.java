@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Collections;
 
 public class Differ {
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
 
     public static String generate(String filePath1, String filePath2, String formatName) throws IOException {
         Map<String, Object> fileData1 = Parser.getData(filePath1);
