@@ -9,6 +9,9 @@ clean:
 install-dist:
 	./gradlew installDist
 
+install-shadow-dist:
+	./gradlew installShadowDist
+
 run-dist:
 	./build/install/app/bin/app $(args)
 
