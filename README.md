@@ -22,7 +22,7 @@ make build
 ## Install
 
 ```bash
-make install
+make install-dist
 ```
 
 ## Run
