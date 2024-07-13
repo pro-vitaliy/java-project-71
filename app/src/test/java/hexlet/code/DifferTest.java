@@ -49,12 +49,11 @@ public class DifferTest {
     public void testGeneratePlain() throws Exception {
         var actual = Differ.generate(testFile5Path, testFile6Path, "plain");
         String expected = """
-                \nProperty 'arr' was added with value: [complex value]
+                Property 'arr' was added with value: [complex value]
                 Property 'chars1' was added with value: [complex value]
                 Property 'chars2' was added with value: false
                 Property 'default' was updated. From '' to null
-                Property 'obj1' was removed
-                """;
+                Property 'obj1' was removed""";
         assertEquals(expected, actual);
     }
 

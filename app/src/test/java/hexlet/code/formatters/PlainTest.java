@@ -11,7 +11,7 @@ public class PlainTest {
     @Test
     public void testFormatDeleted() {
         var diffs = TestUtils.getDataDeleted();
-        String expected = "\nProperty 'k' was removed\n";
+        String expected = "Property 'k' was removed";
         String actual = FORMATTER.format(diffs);
         assertEquals(expected, actual);
     }
@@ -19,7 +19,7 @@ public class PlainTest {
     @Test
     public void testFormatChanged() {
         var diffs = TestUtils.getDataChanged();
-        String expected = "\nProperty 'k' was updated. From 2.5 to 0.1\n";
+        String expected = "Property 'k' was updated. From 2.5 to 0.1";
         String actual = FORMATTER.format(diffs);
         assertEquals(expected, actual);
     }
@@ -27,7 +27,7 @@ public class PlainTest {
     @Test
     public void testFormatUnchanged() {
         var diffs = TestUtils.getDataUnchanged();
-        var expected = "\n\n";
+        var expected = "";
         String actual = FORMATTER.format(diffs);
         assertEquals(expected, actual);
     }
@@ -35,7 +35,7 @@ public class PlainTest {
     @Test
     public void testFormatAddedWithComplexValue() {
         var diffs = TestUtils.getDataAdded();
-        String expected = "\nProperty 'k' was added with value: [complex value]\n";
+        String expected = "Property 'k' was added with value: [complex value]";
         String actual = FORMATTER.format(diffs);
         assertEquals(expected, actual);
     }
