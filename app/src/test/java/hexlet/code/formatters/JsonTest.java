@@ -13,7 +13,7 @@ public class JsonTest {
 
         var diff = TestUtils.getDataAdded();
         var actual = FORMATTER.format(diff);
-        var expected = "{\"value\":[1,2,3],\"key\":\"k\",\"info\":\"ADDED\"}";
+        var expected = "{\"value\":[1,2],\"key\":\"k\",\"info\":\"ADDED\"}";
         assertEquals(expected, actual);
     }
 
@@ -40,7 +40,7 @@ public class JsonTest {
 
         var diff = TestUtils.getDataChanged();
         var actual = FORMATTER.format(diff);
-        var expected = "{\"newValue\":0.1,\"oldValue\":2.5,\"key\":\"k\",\"info\":\"CHANGED\"}";
+        var expected = "{\"newValue\":1,\"oldValue\":2,\"key\":\"k\",\"info\":\"CHANGED\"}";
         assertEquals(expected, actual);
     }
 }
