@@ -53,6 +53,7 @@ public class DifferTest {
                 Property 'chars1' was added with value: [complex value]
                 Property 'chars2' was added with value: false
                 Property 'default' was updated. From '' to null
+                Property 'nums2' was updated. From [complex value] to [complex value]
                 Property 'obj1' was removed""";
         assertEquals(expected, actual);
     }
