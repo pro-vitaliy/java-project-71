@@ -22,12 +22,12 @@ public final class ComparatorTest {
 
     @Test
     public void testAdded() {
-        data2.put("nums", List.of(1, 2, 3));
+        data2.put("nums", List.of(1, 2));
         Map<String, Object> actual = Comparator.compareValues("nums", data1, data2);
 
         assertEquals("nums", actual.get("key"));
         assertEquals("ADDED", actual.get("info"));
-        assertEquals(List.of(1, 2, 3), actual.get("value"));
+        assertEquals(List.of(1, 2), actual.get("value"));
     }
 
     @Test
