@@ -11,7 +11,7 @@ public class StylishTest {
     public void testFormatAdded() {
         var diff = TestUtils.getDataAdded();
         String actual = FORMATTER.format(diff);
-        String expected = "{\n  + k: [1, 2, 3]\n}";
+        String expected = "{\n  + k: [1, 2]\n}";
         assertEquals(expected, actual);
     }
 
@@ -27,7 +27,7 @@ public class StylishTest {
     public void testFormatChanged() {
         var diff = TestUtils.getDataChanged();
         String actual = FORMATTER.format(diff);
-        String expected = "{\n  - k: 2.5\n  + k: 0.1\n}";
+        String expected = "{\n  - k: 2\n  + k: 1\n}";
         assertEquals(expected, actual);
     }
 
