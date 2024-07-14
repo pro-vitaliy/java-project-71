@@ -19,7 +19,7 @@ public class PlainTest {
     @Test
     public void testFormatChanged() {
         var diffs = TestUtils.getDataChanged();
-        String expected = "Property 'k' was updated. From 2.5 to 0.1";
+        String expected = "Property 'k' was updated. From 2 to 1";
         String actual = FORMATTER.format(diffs);
         assertEquals(expected, actual);
     }
