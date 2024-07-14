@@ -10,7 +10,7 @@ public class TestUtils {
         var diffAdded = new ArrayList<Map<String, Object>>();
         var contentAdded = new HashMap<String, Object>();
         contentAdded.put("key", "k");
-        contentAdded.put("value", List.of(1, 2, 3));
+        contentAdded.put("value", List.of(1, 2));
         contentAdded.put("info", "ADDED");
         diffAdded.add(contentAdded);
         return diffAdded;
@@ -40,8 +40,8 @@ public class TestUtils {
         var diffChanged = new ArrayList<Map<String, Object>>();
         var contentChanged = new HashMap<String, Object>();
         contentChanged.put("key", "k");
-        contentChanged.put("oldValue", 2.5);
-        contentChanged.put("newValue", 0.1);
+        contentChanged.put("oldValue", 2);
+        contentChanged.put("newValue", 1);
         contentChanged.put("info", "CHANGED");
         diffChanged.add(contentChanged);
         return diffChanged;
