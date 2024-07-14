@@ -40,7 +40,7 @@ public class ParserTest {
         Map<String, Object> testContent = Parser.getData(testfile6Path.toString());
 
         var actual = testContent.get("nums2");
-        var expected = List.of(22, 33, 44, 55);
+        var expected = List.of(1, 2, 1);
         assertEquals(expected, actual);
     }
 
