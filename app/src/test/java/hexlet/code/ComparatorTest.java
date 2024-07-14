@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class ComparatorTest {
+public final class ComparatorTest {
     private Map<String, Object> data1;
     private Map<String, Object> data2;
 
