@@ -13,7 +13,7 @@ public final class Plain implements Formatter {
         return diffs.stream()
                 .filter(diff -> !diff.get("info").equals("UNCHANGED"))
                 .map(Plain::generate)
-                .collect(Collectors.joining("\n", "\n", ""));
+                .collect(Collectors.joining("\n"));
     }
 
     private static String generate(Map<String, Object> diff) {
