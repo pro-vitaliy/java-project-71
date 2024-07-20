@@ -39,8 +39,11 @@ public class Differ {
 
     /**
      * This method is intended to be used as part of a library.
+     *
+     * @param filePath1 the string path to the first file
+     * @param filePath2 the string path to the second file
+     * @return a formatted string representing the differences between the two files
     */
-    @SuppressWarnings("unused")
     public static String generate(String filePath1, String filePath2) throws Exception {
         return generate(filePath1, filePath2, "stylish");
     }
