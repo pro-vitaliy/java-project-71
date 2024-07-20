@@ -17,15 +17,15 @@ public final class Stylish implements Formatter {
     private static String generate(Map<String, Object> diff) {
         var key = diff.get("key").toString();
         var info = diff.get("info").toString();
-        var value = diff.get("value") != null ? diff.get("value").toString() : "null";
-        var oldValue = diff.get("oldValue") != null ? diff.get("oldValue").toString() : "null";
-        var newValue = diff.get("newValue") != null ? diff.get("newValue").toString() : "null";
+        var value = diff.get("value");
+        var value1 = diff.get("value1");
+        var value2 = diff.get("value2");
         return switch (info) {
             case "ADDED" -> "+ " + key + ": " + value;
             case "DELETED" -> "- " + key + ": " + value;
-            case "CHANGED" -> "- " + key + ": " + oldValue + "\n  + " + key + ": " + newValue;
+            case "CHANGED" -> "- " + key + ": " + value1 + "\n  + " + key + ": " + value2;
             case "UNCHANGED" -> "  " + key + ": " + value;
-            default -> throw new IllegalStateException("Unexpected value: " + info);
+            default -> throw new IllegalArgumentException("Unexpected diff info value: " + info);
         };
     }
 }
