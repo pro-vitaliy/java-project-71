@@ -29,11 +29,7 @@ public class Differ {
         Map<String, Object> fileData1 = Parser.getData(fileAsString1, fileExtension1);
         Map<String, Object> fileData2 = Parser.getData(fileAsString2, fileExtension2);
 
-        var keys = new TreeSet<String>();
-        keys.addAll(fileData1.keySet());
-        keys.addAll(fileData2.keySet());
-
-        List<Map<String, Object>> diffs = Comparator.getDiffs(keys, fileData1, fileData2);
+        List<Map<String, Object>> diffs = Comparator.getDiffs(fileData1, fileData2);
         return FormatterFacade.formatData(diffs, formatName);
     }
 

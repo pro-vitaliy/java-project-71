@@ -1,15 +1,13 @@
 package hexlet.code;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Comparator {
-    public static List<Map<String, Object>> getDiffs(Set<String> keys, Map<String, Object> data1,
-                                                     Map<String, Object> data2) {
+    public static List<Map<String, Object>> getDiffs(Map<String, Object> data1, Map<String, Object> data2) {
+        var keys = new TreeSet<String>();
+        keys.addAll(data1.keySet());
+        keys.addAll(data2.keySet());
+
         var diffs = new ArrayList<Map<String, Object>>();
         for (var key : keys) {
             diffs.add(compareValues(key, data1, data2));
