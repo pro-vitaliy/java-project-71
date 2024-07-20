@@ -3,6 +3,7 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,58 +14,74 @@ public class DifferTest {
     private static String testFile2Path;
     private static String testFile3Path;
     private static String testFile4Path;
-    private static String testFile5Path;
-    private static String testFile6Path;
+    private static String expectedResultStylish;
+    private static String expectedResultPlain;
+    private static String expectedResultJson;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws Exception {
         Path resourceDir = Paths.get("src", "test", "resources");
 
         testFile1Path = resourceDir.resolve("testfile1.json").toAbsolutePath().toString();
-        testFile2Path = resourceDir.resolve("testfile2.json").toAbsolutePath().toString();
+        testFile2Path = resourceDir.resolve("testfile2.json").toString();
         testFile3Path = resourceDir.resolve("testfile3.yaml").toAbsolutePath().toString();
-        testFile4Path = resourceDir.resolve("testfile4.yaml").toAbsolutePath().toString();
-        testFile5Path = resourceDir.resolve("testfile5.yml").toString();
-        testFile6Path = resourceDir.resolve("testfile6.yml").toString();
+        testFile4Path = resourceDir.resolve("testfile4.yaml").toString();
+
+        Path expectedResultStylishPath = resourceDir.resolve("expectedResultStylish.txt");
+        expectedResultStylish = Files.readString(expectedResultStylishPath);
+
+        Path expectedResultPlainPath = resourceDir.resolve("expectedResultPlain.txt");
+        expectedResultPlain = Files.readString(expectedResultPlainPath);
+
+        Path expectedResultJsonPath = resourceDir.resolve("expectedResultJson.txt");
+        expectedResultJson = Files.readString(expectedResultJsonPath);
     }
 
     @Test
-    public void testGenerateStylish() throws Exception {
+    public void generateTestJsonToStylish() throws Exception {
         var actual = Differ.generate(testFile1Path, testFile2Path, "stylish");
-        String expected = """
-                {
-                  + arr: []
-                  + chars1: [a, b, c]
-                  + chars2: false
-                  - default:\s
-                  + default: null
-                    nums1: [1, 2, 3, 4]
-                    nums2: [22, 33, 44, 55]
-                  - obj1: {nestedKey=value, isNested=true}
-                }""";
-        assertEquals(expected, actual);
+        assertEquals(expectedResultStylish, actual);
     }
 
     @Test
-    public void testGeneratePlain() throws Exception {
-        var actual = Differ.generate(testFile5Path, testFile6Path, "plain");
-        String expected = """
-                Property 'arr' was added with value: [complex value]
-                Property 'chars1' was added with value: [complex value]
-                Property 'chars2' was added with value: false
-                Property 'default' was updated. From '' to null
-                Property 'nums2' was updated. From [complex value] to [complex value]
-                Property 'obj1' was removed""";
-        assertEquals(expected, actual);
+    public void generateTestYamlToStylish() throws Exception {
+        var actual = Differ.generate(testFile3Path, testFile4Path, "stylish");
+        assertEquals(expectedResultStylish, actual);
     }
 
     @Test
-    public void testGenerateJson() throws Exception {
+    public void generateTestJsonToPlain() throws Exception {
+        var actual = Differ.generate(testFile1Path, testFile2Path, "plain");
+        assertEquals(expectedResultPlain, actual);
+    }
+
+    @Test
+    public void generateTestYamlToPlain() throws Exception {
+        var actual = Differ.generate(testFile3Path, testFile4Path, "plain");
+        assertEquals(expectedResultPlain, actual);
+    }
+
+    @Test
+    public void generateTestJsonToJson() throws Exception {
+        var actual = Differ.generate(testFile1Path, testFile2Path, "json");
+        assertEquals(expectedResultJson, actual);
+    }
+
+    @Test
+    public void generateTestYamlToJson() throws Exception {
         var actual = Differ.generate(testFile3Path, testFile4Path, "json");
-        var expected = "{\"value\":[\"value1\",\"value2\"],\"key\":\"default\",\"info\":\"DELETED\"}, "
-                + "{\"newValue\":45,\"oldValue\":null,\"key\":\"id\",\"info\":\"CHANGED\"}, "
-                + "{\"value\":[1,2],\"key\":\"numbers\",\"info\":\"UNCHANGED\"}, "
-                + "{\"value\":{\"k1\":\"v1\",\"k2\":true},\"key\":\"obj\",\"info\":\"ADDED\"}";
-        assertEquals(expected, actual);
+        assertEquals(expectedResultJson, actual);
+    }
+
+    @Test
+    public void generateTestJsonWithTwoArgs() throws Exception {
+        var actual = Differ.generate(testFile1Path, testFile2Path);
+        assertEquals(expectedResultStylish, actual);
+    }
+
+    @Test
+    public void generateYamlWithTwoArgs() throws Exception {
+        var actual = Differ.generate(testFile3Path, testFile4Path);
+        assertEquals(expectedResultStylish, actual);
     }
 }
