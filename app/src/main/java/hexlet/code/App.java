@@ -18,20 +18,20 @@ public final class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     private String filepath2;
 
-    @Option(names = {"-f", "--format"}, paramLabel = "format",
+    @Option(names = {"-f", "--format"}, paramLabel = "format", defaultValue = "stylish",
             description = "output format [default: ${DEFAULT-VALUE}]")
-    private String formatName = "stylish";
+    private String formatName;
 
     @Override
-    public Integer call() throws Exception {
-        String dif;
-        if (formatName.equals("stylish")) {
-            dif = Differ.generate(filepath1, filepath2);
-        } else {
-            dif = Differ.generate(filepath1, filepath2, formatName);
+    public Integer call() {
+        try {
+            var dif = Differ.generate(filepath1, filepath2, formatName);
+            System.out.println(dif);
+            return 0;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return 1;
         }
-        System.out.println(dif);
-        return 0;
     }
 
     public static void main(String[] args) {
