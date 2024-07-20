@@ -1,9 +1,0 @@
-{
-  "nums1": [1, 2, 3, 4],
-  "obj1": {
-    "nestedKey": "value",
-    "isNested": true
-  },
-  "nums2": [22, 33, 44, 55],
-  "default": ""
-}
