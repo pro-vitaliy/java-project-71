@@ -10,17 +10,8 @@ import org.apache.commons.io.FilenameUtils;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
-        Path path1 = Paths.get(filePath1).toAbsolutePath().normalize();
-        Path path2 = Paths.get(filePath2).toAbsolutePath().normalize();
-
-        if (!Files.exists(path1)) {
-            throw new Exception("File " + filePath1 + " not found");
-        }
-        if (!Files.exists(path2)) {
-            throw new Exception("File " + filePath2 + " not found");
-        }
-        String fileAsString1 = Files.readString(path1);
-        String fileAsString2 = Files.readString(path2);
+        String fileAsString1 = Files.readString(getPath(filePath1));
+        String fileAsString2 = Files.readString(getPath(filePath2));
 
         String fileExtension1 = FilenameUtils.getExtension(filePath1);
         String fileExtension2 = FilenameUtils.getExtension(filePath2);
@@ -30,6 +21,10 @@ public class Differ {
 
         List<Map<String, Object>> diffs = Comparator.getDiffs(fileData1, fileData2);
         return FormatterFacade.formatData(diffs, formatName);
+    }
+
+    private static Path getPath(String filePath) {
+        return Paths.get(filePath).toAbsolutePath().normalize();
     }
 
     /**
