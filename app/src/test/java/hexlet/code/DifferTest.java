@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,21 +21,19 @@ public class DifferTest {
 
     @BeforeAll
     public static void beforeAll() throws Exception {
+        testFile1Path = getFilePath("testfile1.json").toString();
+        testFile2Path = getFilePath("testfile2.json").toString();
+        testFile3Path = getFilePath("testfile3.yaml").toString();
+        testFile4Path = getFilePath("testfile4.yaml").toString();
+
+        expectedResultStylish = Files.readString(getFilePath("expectedResultStylish.txt"));
+        expectedResultPlain = Files.readString(getFilePath("expectedResultPlain.txt"));
+        expectedResultJson = Files.readString(getFilePath("expectedResultJson.txt"));
+    }
+
+    private static Path getFilePath(String fileName) {
         Path resourceDir = Paths.get("src", "test", "resources");
-
-        testFile1Path = resourceDir.resolve("testfile1.json").toAbsolutePath().toString();
-        testFile2Path = resourceDir.resolve("testfile2.json").toString();
-        testFile3Path = resourceDir.resolve("testfile3.yaml").toAbsolutePath().toString();
-        testFile4Path = resourceDir.resolve("testfile4.yaml").toString();
-
-        Path expectedResultStylishPath = resourceDir.resolve("expectedResultStylish.txt");
-        expectedResultStylish = Files.readString(expectedResultStylishPath);
-
-        Path expectedResultPlainPath = resourceDir.resolve("expectedResultPlain.txt");
-        expectedResultPlain = Files.readString(expectedResultPlainPath);
-
-        Path expectedResultJsonPath = resourceDir.resolve("expectedResultJson.txt");
-        expectedResultJson = Files.readString(expectedResultJsonPath);
+        return resourceDir.resolve(fileName).toAbsolutePath();
     }
 
     @Test
