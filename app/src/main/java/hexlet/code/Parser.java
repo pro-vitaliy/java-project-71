@@ -12,14 +12,18 @@ public class Parser {
         var fileData = new HashMap<String, Object>();
 
         ObjectMapper mapper;
-        if (fileExtension.equals("json")) {
-            mapper = new ObjectMapper();
-            fileData = mapper.readValue(fileContent, new TypeReference<>() { });
-        } else if (fileExtension.equals("yml") || fileExtension.equals("yaml")) {
-            mapper = new YAMLMapper();
-            fileData = mapper.readValue(fileContent, new TypeReference<>() { });
-        } else {
-            throw new Exception("Unexpected file extension: " + fileExtension);
+        switch (fileExtension) {
+            case "json" -> {
+                mapper = new ObjectMapper();
+                fileData = mapper.readValue(fileContent, new TypeReference<>() {
+                });
+            }
+            case "yml", "yaml" -> {
+                mapper = new YAMLMapper();
+                fileData = mapper.readValue(fileContent, new TypeReference<>() {
+                });
+            }
+            default -> throw new Exception("Unexpected file extension: " + fileExtension);
         }
         return fileData;
     }
