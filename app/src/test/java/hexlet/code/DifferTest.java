@@ -63,13 +63,17 @@ public class DifferTest {
     @Test
     public void generateTestJsonToJson() throws Exception {
         var actual = Differ.generate(testFile1Path, testFile2Path, "json");
-        assertEquals(expectedResultJson, actual);
+
+        ObjectMapper mapper = new ObjectMapper();
+        assertEquals(mapper.readTree(expectedResultJson), mapper.readTree(actual));
     }
 
     @Test
     public void generateTestYamlToJson() throws Exception {
         var actual = Differ.generate(testFile3Path, testFile4Path, "json");
-        assertEquals(expectedResultJson, actual);
+
+        ObjectMapper mapper = new ObjectMapper();
+        assertEquals(mapper.readTree(expectedResultJson), mapper.readTree(actual));
     }
 
     @Test
