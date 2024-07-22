@@ -35,15 +35,12 @@ public final class Plain implements Formatter {
     }
 
     private static String convertValueToString(Object value) {
-        if (value == null) {
-            return "null";
-        }
         if (value instanceof String) {
             return "'%s'".formatted(value);
-        } else if (value.getClass().isArray() || value instanceof Collection || value instanceof Map) {
+        } else if (value instanceof Collection || value instanceof Map) {
             return "[complex value]";
         } else {
-            return value.toString();
+            return String.valueOf(value);
         }
     }
 }
